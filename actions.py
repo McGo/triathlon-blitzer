@@ -20,9 +20,7 @@ class TakePictureAction(AAction):
             print(filename_prefix)
             from picamzero import Camera
             cam = Camera()
-            cam.start_preview()
             cam.take_photo(self.path + "/" +filename_prefix + ".jpg")
-            cam.stop_preview()
         except Exception as e:
             print('Trying to take picture but got error ' + str(e))
 
