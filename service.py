@@ -1,16 +1,20 @@
 from time import sleep
 
 from detectors import RandomDetector
-from handlers import DebuggingHandler
+from handlers import ConfigurableActionsHandler
+from actions import TakePictureAction, PrintDetectionAction
 
 
 def main():
-    # setup detector
+    # setup detector and handler
     detector = RandomDetector()
-    handler = DebuggingHandler()
+    handler = ConfigurableActionsHandler([
+        TakePictureAction('~/Desktop/images'),
+        PrintDetectionAction()
+    ])
 
-    while (True):
-        # Let the detector do it's thing to check for a new detection
+    while True:
+        # Let the detector do its thing to check for a new detection
         detector.detect()
 
         # If there is one, handle it correctly

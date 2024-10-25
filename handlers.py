@@ -1,7 +1,8 @@
 from detection import Detection
+from abc import ABC
 
 
-class AHandler:
+class AHandler(ABC):
     def __init__(self):
         pass
 
@@ -9,7 +10,12 @@ class AHandler:
         pass
 
 
-class DebuggingHandler(AHandler):
-    def process(self, detection: Detection):
-        print(detection.time, detection.speed)
+class ConfigurableActionsHandler(AHandler):
 
+    def __init__(self, actions):
+        super().__init__()
+        self.actions = actions
+
+    def process(self, detection: Detection):
+        for action in self.actions:
+            action.perform(detection)

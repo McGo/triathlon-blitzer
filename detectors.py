@@ -1,8 +1,9 @@
 import random
 from detection import Detection
+from abc import ABC
 
 
-class ADetector:
+class ADetector(ABC):
     current_detection: Detection = None
     last_detection: Detection = None
 
